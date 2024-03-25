@@ -5,11 +5,6 @@ import exphbs from 'express-handlebars'
 //import cookieParser from 'cookie-parser'
 import sequelize from './sequelize.js'
 
-//const api=require('./api/routes/products')
-
-// Подключение необходимых модулей
-import bodyParser from 'body-parser';
-
 const PORT = process.env.PORT || 2000
 // Создание приложения Express
 const app = express();
@@ -21,9 +16,6 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views','views')
-
-// Промежуточное ПО для обработки JSON данных
-app.use(bodyParser.json());
 
 // Роут для получения информации о товарах
 app.get('./api/products.js', (req, res) => {
