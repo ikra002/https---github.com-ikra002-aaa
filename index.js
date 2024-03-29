@@ -1,5 +1,5 @@
 import express from 'express'
-import config from 'dotenv/config'  //для связи с env
+import'dotenv/config'  //для связи с env
 import exphbs from 'express-handlebars'
 //import fileUpload from 'express-fileupload'
 //import session from 'express-session'
@@ -11,8 +11,9 @@ const PORT = process.env.PORT || 2000
 
 const app = express();
 
+//console.log(process.env)
 // app.get('/',(req,res)=>{
-//     res.send("me")  //эта штука пишет на главном экране ме, приколдес
+//     res.send("me")  //эта штука пишет на главном экране ме
 // })
 
 const sequelize = new Sequelize('shop','postgres','1235',{
