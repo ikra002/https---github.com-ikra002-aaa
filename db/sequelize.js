@@ -1,7 +1,5 @@
 import {Sequelize} from 'sequelize'
 
-//module.exports = config;
-
 export default new Sequelize(
     process.env.DB_NAME,"shop",// база данных
     process.env.DB_USER,"postgres",// пользователь
@@ -13,4 +11,4 @@ export default new Sequelize(
     }
 )
 
-// //module.exports = config;
+module.exports = config;
