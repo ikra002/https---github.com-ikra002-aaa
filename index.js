@@ -1,13 +1,25 @@
 import express from 'express'
+import config from 'dotenv/config'  //для связи с env
 import exphbs from 'express-handlebars'
 //import fileUpload from 'express-fileupload'
 //import session from 'express-session'
 //import cookieParser from 'cookie-parser'
-import sequelize from './sequelize.js'
+//import sequelize from './db/sequelize.js'
+import { Sequelize } from 'sequelize'
 
 const PORT = process.env.PORT || 2000
-// Создание приложения Express
+
 const app = express();
+
+// app.get('/',(req,res)=>{
+//     res.send("me")  //эта штука пишет на главном экране ме, приколдес
+// })
+
+const sequelize = new Sequelize('shop','postgres','1235',{
+    dialect: "postgres",
+    host:"localhost"
+})
+
 const hbs = exphbs.create({
     defaultLayout:'main',
     extname:"hbs"
@@ -33,6 +45,7 @@ const start = async () => {
     try {
         await sequelize.authenticate()
         await sequelize.sync()
+        
         app.listen(PORT, () => console.log(`Сервер запущен`));
     } catch(e) {
         console.log(e)
