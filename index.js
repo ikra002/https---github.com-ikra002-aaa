@@ -1,15 +1,19 @@
 import express from 'express'
-import'dotenv/config'  //для связи с env
+import 'dotenv/config'  //для связи с env
 import exphbs from 'express-handlebars'
 //import fileUpload from 'express-fileupload'
 //import session from 'express-session'
 //import cookieParser from 'cookie-parser'
 //import sequelize from './db/sequelize.js'
 import { Sequelize } from 'sequelize'
+// export default 'todosRoutes'
+import todosRoutes from './routes/todos.js'
+
 
 const PORT = process.env.PORT || 2000
 
 const app = express();
+
 
 //console.log(process.env)
 // app.get('/',(req,res)=>{
@@ -30,17 +34,19 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views','views')
 
-// Роут для получения информации о товарах
-app.get('./api/products.js', (req, res) => {
-    res.json({ message: 'Получение информации о товарах' });
-});
+// // Роут для получения информации о товарах
+// app.get('./api/products.js', (req, res) => {
+//     res.json({ message: 'Получение информации о товарах' });
+// });
 
-// Роут для обновления статуса товара
-app.put('./api/products/:id', (req, res) => {
-    const productId = req.params.id;
-    const newStatus = req.body.status;
-    res.json({ message: `Обновление статуса товара с ID ${productId} на ${newStatus}` });
-});
+// // Роут для обновления статуса товара
+// app.put('./api/products/:id', (req, res) => {
+//     const productId = req.params.id;
+//     const newStatus = req.body.status;
+//     res.json({ message: `Обновление статуса товара с ID ${productId} на ${newStatus}` });
+// });
+
+app.use(todosRoutes)
 
 const start = async () => {
     try {
